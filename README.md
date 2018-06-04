@@ -8,7 +8,7 @@ TODO: Describe the installation process
 
 ## Usage
 
-1. `git clone https://github.com/jamesmead/workstation.git workstation_config`
+1. `git clone https://github.com/jamesmead/workstation_config.git`
 2. `cd workstation_config`
 2. Run `sh base_install.sh`
 
