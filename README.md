@@ -1,4 +1,4 @@
-# Local Machine Config
+# Workstation Config
 
 This repo serves as a quick-start guide for getting a workstation configured. It includes personalisations such as trackpad scolling direction and custom software. 
 
