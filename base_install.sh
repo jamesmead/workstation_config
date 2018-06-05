@@ -345,10 +345,6 @@ case "$(uname -s)" in
         fi
 
         ###############################################################################
-        # Optional Extras
-        ###############################################################################
-
-        ###############################################################################
         # Package Managers
         ###############################################################################
 
@@ -357,23 +353,27 @@ case "$(uname -s)" in
         read -r response
         if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
           /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" -y # download homebrew
+          brew tap homebrew/cask
           brew update -y # update brew
         fi
 
         ###############################################################################
-        # Ruby
+        # Optional Extras
         ###############################################################################
 
         echo ""
         echo "Install Ruby? (y/n)"
         read -r response
         if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew install ruby -y
+          brew cask install ruby
         fi
 
-        ###############################################################################
-        # Spectacle
-        ###############################################################################
+        echo ""
+        echo "Install Python? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew cask install python
+        fi
 
         echo ""
         echo "Install Spectacle? (y/n)"
@@ -384,10 +384,6 @@ case "$(uname -s)" in
           rm /tmp/Spectacle.zip
         fi
 
-        ###############################################################################
-        # Aerial Screensaver
-        ###############################################################################
-
         echo ""
         echo "Install Aerial Screensaver? (y/n)"
         read -r response
@@ -395,15 +391,47 @@ case "$(uname -s)" in
           brew cask install aerial
         fi
 
-        # @TODO:
-        # install python
-        # install slack
-        # install Zsh
-        # install iTerm2
-        # install Visual Code
-        # install docker
-        # brew install docker -y
-        # install spotify
+        echo ""
+        echo "Install Slack? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew cask install slack
+        fi
+
+        echo ""
+        echo "Install iTerm2? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew cask install iterm2
+        fi
+
+        echo ""
+        echo "Install Zsh? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew cask install zsh zsh-completions
+        fi
+
+        echo ""
+        echo "Install VS Code? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew cask install visual-studio-code
+        fi
+
+        echo ""
+        echo "Install Docker? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew cask install docker
+        fi
+
+        echo ""
+        echo "Install Spotify? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew cask install spotify spotify-notifications
+        fi
 
         # Create a nice last-change git log message, from https://twitter.com/elijahmanor/status/697055097356943360
         git config --global alias.lastchange 'log -p --follow -n 1'
