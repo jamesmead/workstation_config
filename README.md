@@ -1,6 +1,6 @@
 # Workstation Config
 
-This repo serves as a quick-start guide for getting a workstation configured. It includes personalisations such as trackpad scolling direction and custom software. 
+This repo serves as a template for quickly configuring a new workstation. It includes personalisations such as trackpad scolling direction and custom software. 
 
 ## Installation
 
@@ -10,7 +10,8 @@ TODO: Describe the installation process
 
 1. `git clone https://github.com/jamesmead/workstation_config.git`
 2. `cd workstation_config`
-2. Run `sh base_install.sh`
+3. Run `sh configuration.sh`
+4. Run `sh software.sh`
 
 ## Contributing
 

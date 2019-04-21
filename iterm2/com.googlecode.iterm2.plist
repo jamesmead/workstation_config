@@ -33,7 +33,7 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/workspace/personal/workstation_config</string>
+	<string>~/workspace/personal/workstation_config/iterm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -74,7 +74,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>395 315 918 423 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 80 650 452 0 0 1440 900 </string>
+	<string>0 0 650 452 0 0 1440 900 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -734,10 +734,14 @@
 	<key>NoSyncInstallationId</key>
 	<string>43174EAC-5D0F-48FF-9879-94B0168E2D2A</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>2</integer>
+	<integer>8</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
+	<key>NoSyncNeverRemindPrefsChangesLostForUrl</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForUrl_selection</key>
 	<integer>0</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>577585529.287799</real>
@@ -1362,7 +1366,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>https://raw.githubusercontent.com/jamesmead/workstation_config/master/iterm2/com.googlecode.iterm2.plist</string>
+	<string>/Users/james.mead/workspace/personal/workstation_config/iterm2</string>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>SUEnableAutomaticChecks</key>
