@@ -8,6 +8,7 @@
 # Alot of these configs have been taken from the various places
 # on the web, most from here
 # https://github.com/mathiasbynens/dotfiles/blob/5b3c8418ed42d93af2e647dc9d122f25cc034871/.osx
+# https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
 
 # Set the colours you can use
 black='\033[0;30m'
@@ -98,6 +99,13 @@ case "$(uname -s)" in
         echo "Disable Photos.app from starting everytime a device is plugged in"
         defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
+        echo ""
+        echo "Enable Dark Mode and Finder Accent Colour"
+        defaults write "Apple Global Domain" AppleInterfaceStyle -string "Dark"
+        defaults write "Apple Global Domain" AppleAccentColor -integer 5
+        defaults write "Apple Global Domain" AppleAquaColorVariant -bool true
+        defaults write "Apple Global Domain" AppleHighlightColor -string "0.968627 0.831373 1.000000 Purple"
+
         ###############################################################################
         # General Power and Performance modifications
         ###############################################################################
@@ -107,41 +115,20 @@ case "$(uname -s)" in
         ###############################################################################
 
         echo ""
-        echo "Enable tap to click? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-          defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
-          defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-          defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-        fi
+        echo "Enable tap to click?"
+        ddefaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+        defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+        defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
         echo ""
-        echo "Disable Natural Scroll Direction? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-          defaults write com.apple.swipescrolldirection -bool false
-        fi
+        echo "Disable Natural Scroll Direction?"
+        defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+        defaults write com.apple.swipescrolldirection -bool false
 
         echo ""
         echo "Setting trackpad & mouse speed to a reasonable number"
         defaults write -g com.apple.trackpad.scaling 1
         defaults write -g com.apple.mouse.scaling 1.5
-
-        echo ""
-        echo "Disable display from automatically adjusting brightness? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Automatic Display Enabled" -bool false
-        fi
-
-        echo ""
-        echo "Disable keyboard from automatically adjusting backlight brightness in low light? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Automatic Keyboard Enabled" -bool false
-        fi
 
         ###############################################################################
         # Screen
@@ -186,85 +173,58 @@ case "$(uname -s)" in
         ###############################################################################
 
         echo ""
-        echo "Show icons for hard drives, servers, and removable media on the desktop? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-        fi
+        echo "Show icons for hard drives, servers, and removable media on the desktop"
+        defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 
         echo ""
-        echo "Show hidden files in Finder by default? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder
-        fi
+        echo "Show hidden files in Finder by default"
+        defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder
 
         echo ""
-        echo "Show all filename extensions in Finder by default? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-        fi
+        echo "Show all filename extensions in Finder by default"
+        defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
         echo ""
-        echo "Disable icons on Desktop? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.finder CreateDesktop -bool false && killall Finder
-        fi
+        echo "Disable icons on Desktop"
+        defaults write com.apple.finder CreateDesktop -bool false && killall Finder
 
         echo ""
-        echo "Disable the warning when changing a file extension? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-        fi
+        echo "Disable the warning when changing a file extension"
+        defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
         echo ""
-        echo "Use column view in all Finder windows by default? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.finder FXPreferredViewStyle Clmv
-        fi
+        echo "Use column view in all Finder windows by default"
+        defaults write com.apple.finder FXPreferredViewStyle Clmv
 
         echo ""
-        echo "Avoid creation of .DS_Store files on network volumes? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-        fi
+        echo "Avoid creation of .DS_Store files on network volumes"
+        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
         ###############################################################################
         # Dock & Mission Control
         ###############################################################################
 
         echo ""
-        echo "Wipe all (default) app icons from the Dock? (y/n)"
+        echo "Wipe all (default) app icons from the Dock"
         echo "(This is only really useful when setting up a new Mac, or if you don't use the Dock to launch apps.)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.dock persistent-apps -array
-        fi
+        defaults write com.apple.dock persistent-apps -array
 
         echo ""
         echo "Setting the icon size of Dock items to 33 pixels for optimal size/screen-realestate"
         defaults write com.apple.dock tilesize -int 33
 
-        echo ""
-        echo "Set Dock to auto-hide and remove the auto-hiding delay? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.dock autohide -bool true
-          defaults write com.apple.dock autohide-delay -float 0
-          defaults write com.apple.dock autohide-time-modifier -float 0
-        fi
+        # echo ""
+        # echo "Set Dock to auto-hide and remove the auto-hiding delay"
+        # read -r response
+        # if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        #   defaults write com.apple.dock autohide -bool true
+        #   defaults write com.apple.dock autohide-delay -float 0
+        #   defaults write com.apple.dock autohide-time-modifier -float 0
+        # fi
 
         echo ""
-        echo "Set Dock orientation to the left? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.dock orientation -string "left"
-        fi
+        echo "Set Dock orientation to the right"
+        defaults write com.apple.dock orientation -string "right"
 
         ###############################################################################
         # Chrome, Safari, & WebKit
@@ -309,40 +269,22 @@ case "$(uname -s)" in
         echo "Adding a context menu item for showing the Web Inspector in web views"
         defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-        echo ""
-        echo "Disabling the annoying backswipe in Chrome"
-        defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-        defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
-
-        echo ""
-        echo "Using the system-native print preview dialog in Chrome"
-        defaults write com.google.Chrome DisablePrintPreview -bool true
-        defaults write com.google.Chrome.canary DisablePrintPreview -bool true
-
         ###############################################################################
         # Messages                                                                    #
         ###############################################################################
 
         echo ""
-        echo "Disable automatic emoji substitution in Messages.app? (i.e. use plain text smileys) (y/n)"
+        echo "Disable automatic emoji substitution in Messages.app? (i.e. use plain text smileys)"
         read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
-        fi
+        defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
 
         echo ""
-        echo "Disable smart quotes in Messages.app? (it's annoying for messages that contain code) (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
-        fi
+        echo "Disable smart quotes in Messages.app? (it's annoying for messages that contain code)"
+        defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
 
         echo ""
-        echo "Disable continuous spell checking in Messages.app? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
-        fi
+        echo "Disable continuous spell checking in Messages.app?"
+        defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
         ###############################################################################
         # Package Managers
@@ -352,89 +294,10 @@ case "$(uname -s)" in
         echo "Install brew? (y/n)"
         read -r response
         if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" -y # download homebrew
+          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
           brew tap homebrew/cask
           brew update -y # update brew
         fi
-
-        ###############################################################################
-        # Optional Extras
-        ###############################################################################
-
-        echo ""
-        echo "Install Ruby? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install ruby
-        fi
-
-        echo ""
-        echo "Install Python? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install python
-        fi
-
-        echo ""
-        echo "Install Spectacle? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          curl https://s3.amazonaws.com/spectacle/downloads/Spectacle+1.2.zip -o /tmp/Spectacle.zip
-          unzip -a /tmp/Spectacle.zip -d /Applications
-          rm /tmp/Spectacle.zip
-        fi
-
-        echo ""
-        echo "Install Aerial Screensaver? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install aerial
-        fi
-
-        echo ""
-        echo "Install Slack? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install slack
-        fi
-
-        echo ""
-        echo "Install iTerm2? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install iterm2
-        fi
-
-        echo ""
-        echo "Install Zsh? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install zsh zsh-completions
-        fi
-
-        echo ""
-        echo "Install VS Code? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install visual-studio-code
-        fi
-
-        echo ""
-        echo "Install Docker? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install docker
-        fi
-
-        echo ""
-        echo "Install Spotify? (y/n)"
-        read -r response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          brew cask install spotify spotify-notifications
-        fi
-
-        # Create a nice last-change git log message, from https://twitter.com/elijahmanor/status/697055097356943360
-        git config --global alias.lastchange 'log -p --follow -n 1'
 
         ###############################################################################
         # Kill affected applications
