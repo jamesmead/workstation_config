@@ -106,6 +106,10 @@ case "$(uname -s)" in
         defaults write "Apple Global Domain" AppleAquaColorVariant -bool true
         defaults write "Apple Global Domain" AppleHighlightColor -string "0.968627 0.831373 1.000000 Purple"
 
+        echo ""
+        echo "Disable recently used apps from Dock"
+        defaults write com.apple.dock show-recents -bool false
+
         ###############################################################################
         # General Power and Performance modifications
         ###############################################################################
