@@ -126,7 +126,10 @@ case "$(uname -s)" in
           # adds zsh plugins
           git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
           git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-          sed -i '' -e "s/plugins=(git)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/g" ~/.zshrc
+          # update plugins
+          newPlugins=()
+          newPlugins+=("${plugins[@]}" "zsh-syntax-highlighting" "zsh-autosuggestions")
+          sed -i '' -e "s/plugins=(${plugins})/plugins=(${newPlugins})/g" ~/.zshrc
           source ~/.zshrc
         fi
 
@@ -149,6 +152,18 @@ case "$(uname -s)" in
         read -r response
         if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
           brew cask install spotify spotify-notifications
+        fi
+
+        echo ""
+        echo "Install Kubectl? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew install kubectl
+          # update plugins
+          newPlugins=()
+          newPlugins+=("${plugins[@]}" "kubectl")
+          sed -i '' -e "s/plugins=(${plugins})/plugins=(${newPlugins})/g" ~/.zshrc
+          source ~/.zshrc
         fi
 
         ###############################################################################
