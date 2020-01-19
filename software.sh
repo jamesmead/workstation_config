@@ -133,6 +133,14 @@ case "$(uname -s)" in
           source ~/.zshrc
         fi
 
+        cho ""
+        echo "Install Custom Fonts? (y/n)"
+        read -r response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          brew tap homebrew/cask-fonts
+          brew cask install font-fira-code
+        fi
+
         echo ""
         echo "Install VS Code? (y/n)"
         read -r response
