@@ -120,7 +120,7 @@ case "$(uname -s)" in
 
         echo ""
         echo "Enable tap to click?"
-        ddefaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+        defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
         defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
         defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
@@ -139,7 +139,7 @@ case "$(uname -s)" in
         ###############################################################################
 
         echo ""
-        echo "Where do you want screenshots to be stored? (hit ENTER if you want ~/Desktop as default)"
+        echo "Where do you want screenshots to be stored? Please enter a folder name or hit ENTER if you want ~/Desktop as default"
         # Thanks https://github.com/omgmog
         read screenshot_location
         echo ""
